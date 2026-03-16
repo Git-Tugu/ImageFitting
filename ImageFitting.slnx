@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ImageFitting/ImageFitting.csproj" />
+  <Project Path="ImageFittingTest/ImageFittingTest.csproj" Id="994c3b01-c554-4747-878b-f987c5a289e5" />
+  <Project Path="ImageFitttingLibrary/ImageFitttingLibrary.csproj" Id="300681a6-5f5e-469a-9f58-12ef6e71fc61" />
+</Solution>
