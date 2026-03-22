@@ -5,11 +5,10 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <EnableMSTestRunner>true</EnableMSTestRunner>
-    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
     <PackageReference Include="MSTest" Version="4.0.2" />
   </ItemGroup>
 

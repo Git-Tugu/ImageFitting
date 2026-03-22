@@ -1,24 +1,31 @@
-﻿namespace ImageFittingTest
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Drawing;
+
+namespace ImageFitting.Tests
 {
     [TestClass]
-    public sealed class Test1
+    public class CropperTests
     {
-        [TestInitialize]
-        public void TestInit()
+        [TestMethod]
+        public void GetCropArea_ReturnsCenteredSquare()
         {
-            // This method is called before each test method.
-        }
+            var cropper = new Cropper();
 
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            // This method is called after each test method.
+            var result = cropper.GetCropArea(800, 600);
+
+            Assert.AreEqual(new Rectangle(100, 0, 600, 600), result);
         }
 
         [TestMethod]
-        public void ValidImageTest()
+        public void Crop_Returns512x512Image()
         {
-            Assert.IsTrue(true); // Placeholder for actual test logic.
+            using var input = new Bitmap(800, 800);
+            var cropper = new Cropper();
+
+            var result = cropper.Crop(input);
+
+            Assert.AreEqual(512, result.Width);
+            Assert.AreEqual(512, result.Height);
         }
     }
 }

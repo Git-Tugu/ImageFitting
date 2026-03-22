@@ -41,7 +41,6 @@
             CropedImage.Size = new Size(512, 512);
             CropedImage.TabIndex = 0;
             CropedImage.TabStop = false;
-            CropedImage.Click += pictureBox1_Click;
             CropedImage.MouseClick += CropedImage_MouseClick;
             // 
             // InsertTextBox
@@ -49,11 +48,13 @@
             InsertTextBox.BackColor = SystemColors.ActiveCaption;
             InsertTextBox.BorderStyle = BorderStyle.None;
             InsertTextBox.CausesValidation = false;
+            InsertTextBox.Font = new Font("Segoe UI", 16F);
             InsertTextBox.ForeColor = SystemColors.WindowFrame;
             InsertTextBox.ImeMode = ImeMode.Off;
-            InsertTextBox.Location = new Point(360, 299);
+            InsertTextBox.Location = new Point(342, 291);
+            InsertTextBox.Multiline = true;
             InsertTextBox.Name = "InsertTextBox";
-            InsertTextBox.Size = new Size(100, 16);
+            InsertTextBox.Size = new Size(132, 40);
             InsertTextBox.TabIndex = 1;
             InsertTextBox.Text = "Insert image";
             InsertTextBox.TextAlign = HorizontalAlignment.Center;
@@ -62,6 +63,7 @@
             // 
             // ImageCropper
             // 
+            AccessibleRole = AccessibleRole.Dialog;
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(924, 616);
             Controls.Add(InsertTextBox);

@@ -23,7 +23,7 @@ namespace ImageFitting
             LoadAndCropImage();
         }
 
-        public void LoadAndCropImage()
+        private void LoadAndCropImage()
         {
             string path = SelectImagePath();
             if (path == null) return;

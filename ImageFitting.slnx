@@ -1,5 +1,5 @@
 <Solution>
+  <Project Path="ImageFitterLibrary/ImageFitterLibrary.csproj" Id="4a768301-8caa-48b2-927f-4c7e46d2cc71" />
   <Project Path="ImageFitting/ImageFitting.csproj" />
-  <Project Path="ImageFittingTest/ImageFittingTest.csproj" Id="994c3b01-c554-4747-878b-f987c5a289e5" />
-  <Project Path="ImageFitttingLibrary/ImageFitttingLibrary.csproj" Id="300681a6-5f5e-469a-9f58-12ef6e71fc61" />
+  <Project Path="UnitTestForImageFitting/UnitTestForImageFitting.csproj" Id="44a40f56-dbcb-48f8-a78f-19ab6a26cbdb" />
 </Solution>
