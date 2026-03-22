@@ -6,30 +6,36 @@ using System.Windows.Forms;
 public class ImageCropperTests
 {
     [TestMethod]
-    public void LoadAndCropImage_WithValidPath_UpdatesUI()
+    public void ProcessFile_ValidPath_UpdatesUI()
     {
         using (var form = new ImageCropper())
         {
-            // 1. Setup a fake image
+            // 1. Setup
             string tempPath = TestImageGenerator.SaveTempImage(600, 600, "ui_test.png");
 
             try
             {
-                // 2. Use Reflection to find the private method
-                var method = typeof(ImageCropper).GetMethod("LoadAndCropImage",
+                // 2. Use Reflection to find 'ProcessFile' (internal)
+                var method = typeof(ImageCropper).GetMethod("ProcessFile",
                     System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
-                // 3. Invoke it (passing 'tempPath' as the argument)
-                // Note: If your method doesn't take parameters yet, pass null
+                // 3. Invoke it with the path parameter
                 method.Invoke(form, new object[] { tempPath });
 
                 // 4. Assert
                 var textBox = GetPrivateField<TextBox>(form, "InsertTextBox");
                 Assert.IsFalse(textBox.Visible, "TextBox should be hidden after successful crop.");
+
+                var pictureBox = GetPrivateField<PictureBox>(form, "CropedImage");
+                Assert.IsNotNull(pictureBox.Image, "Image should be assigned to PictureBox.");
             }
             finally
             {
-                if (System.IO.File.Exists(tempPath)) System.IO.File.Delete(tempPath);
+                // Clean up the temp file
+                if (System.IO.File.Exists(tempPath))
+                {
+                    System.IO.File.Delete(tempPath);
+                }
             }
         }
     }
@@ -55,5 +61,18 @@ public class ImageCropperTests
         var field = obj.GetType().GetField(fieldName,
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         return (T)field.GetValue(obj);
+    }
+
+
+    
+
+    [TestMethod]
+    public void Dispose_FullCoverage()
+    {
+        // This targets the 'Dispose(bool)' method shown as partially covered
+        var form = new ImageCropper();
+        form.Dispose();
+
+        Assert.IsTrue(form.IsDisposed);
     }
 }

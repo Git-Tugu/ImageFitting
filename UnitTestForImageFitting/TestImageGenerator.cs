@@ -12,27 +12,26 @@ namespace ImageFitting.Tests.Utilities
     public static class TestImageGenerator
     {
         /// <summary>
-        /// Заасан хэмжээтэй, санамсаргүй өнгөтэй Bitmap объект үүсгэнэ.
+        /// Creates a Bitmap object with the specified width and height, 
+        /// fills it with a solid color based on the dimensions, and draws 
+        /// the dimensions as text on the image for easy identification during testing.
         /// </summary>
-        /// <param name="width">Өргөн (pixels)</param>
-        /// <param name="height">Өндөр (pixels)</param>
-        /// <returns>Bitmap объект</returns>
+        /// <param name="width">Wigth</param>
+        /// <param name="height">Heigth</param>
+        /// <returns>bitmap object</returns>
         public static Bitmap CreateTestBitmap(int width, int height)
         {
             Bitmap bitmap = new Bitmap(width, height);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
-                // Зургийг ялгахын тулд санамсаргүй өнгөөр дүүргэх (заавал биш)
                 g.Clear(Color.FromArgb(255, width % 255, height % 255, (width + height) % 255));
-
-                // Туршилтын бичвэр оруулах (зураг хоосон биш гэдгийг харуулах)
                 g.DrawString($"{width}x{height}", new System.Drawing.Font("Arial", 10), Brushes.White, new PointF(5, 5));
             }
             return bitmap;
         }
 
         /// <summary>
-        /// Тест хийхэд зориулж зургийг файл хэлбэрээр түр хадгалах функц.
+        /// For testing purposes, creates a temporary PNG image file with the specified dimensions and returns its file path.
         /// </summary>
         public static string SaveTempImage(int width, int height, string fileName)
         {
